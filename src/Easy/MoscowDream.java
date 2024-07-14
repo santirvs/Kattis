@@ -9,13 +9,15 @@ public class MoscowDream {
         Locale.setDefault(Locale.ENGLISH);
         Scanner scan = new Scanner(System.in);
 
+        int a = scan.nextInt();
+        int b = scan.nextInt();
+        int c = scan.nextInt();
         int n = scan.nextInt();
-        float result = 0.0f;
-        for (int i=1; i<=n; i++) {
-            float y = scan.nextFloat();
-            float q = scan.nextFloat();
-            result += y*q;
+
+        if (a>0 && b>0 && c>0 && n>2 && a+b+c>=n) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
         }
-        System.out.printf("%.3f",result);
     }
 }

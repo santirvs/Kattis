@@ -3,7 +3,7 @@ package Cap1._1_ParaEmpezar._5_Lineales;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class babybites {
+public class Babybites {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);

@@ -1,4 +1,4 @@
-package Easy;
+package Cap1._1_ParaEmpezar._1_SoloESySecuencias;
 
 import java.util.Scanner;
 import java.util.Locale;

@@ -2,11 +2,6 @@ package Cap1._1_ParaEmpezar._A_Medios;
 
 import java.util.Locale;
 import java.util.Scanner;
-
-// Fast Food Prizes
-// Explicación del enunciado
-// Las pegatinas del entrenador son la cantidad de pegatinas que tiene de cada tipo
-
 public class BotlledUpFeelings {
 
    public static void main(String[] args) {

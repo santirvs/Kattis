@@ -1,9 +1,8 @@
 package Cap1._2_ProblemasAdHoc._14_FormatoSalida;
 
-import java.util.Locale;
-import java.util.Scanner;
+import Cap1._2_ProblemasAdHoc._4_Juegos_Dificiles.Kattio;
 
-public class DigitalDisplay_TLE {
+public class DigitalDisplay {
 
     public static char[][] relojNuevo() {
         char[][] reloj = {
@@ -81,11 +80,14 @@ public class DigitalDisplay_TLE {
 
      public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
-        scan.useLocale(Locale.ENGLISH);
+        //Scanner scan = new Scanner(System.in);
+        //scan.useLocale(Locale.ENGLISH);
+
+         Kattio scan = new Kattio(System.in, System.out);
 
         //Leer la entrada
-        String hora = scan.nextLine();
+        //String hora = scan.nextLine();
+         String hora = scan.getWord();
         while (!hora.equals("end")) {
 
             char[][] reloj = relojNuevo();
@@ -105,7 +107,8 @@ public class DigitalDisplay_TLE {
             System.out.println();
             System.out.println();
 
-            hora = scan.nextLine();
+            //hora = scan.nextLine();
+            hora = scan.getWord();
         }
         System.out.println(hora);
 

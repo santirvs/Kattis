@@ -1,8 +1,6 @@
 package Cap1._2_ProblemasAdHoc._9_Tiempo_Dificiles;
 
 
-import Cap1._2_ProblemasAdHoc._4_Juegos_Dificiles.Kattio;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

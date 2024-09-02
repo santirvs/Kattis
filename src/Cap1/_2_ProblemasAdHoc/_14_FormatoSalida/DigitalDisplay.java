@@ -1,6 +1,6 @@
 package Cap1._2_ProblemasAdHoc._14_FormatoSalida;
 
-import Cap1._2_ProblemasAdHoc._4_Juegos_Dificiles.Kattio;
+import Utils.Kattio;
 
 public class DigitalDisplay {
 

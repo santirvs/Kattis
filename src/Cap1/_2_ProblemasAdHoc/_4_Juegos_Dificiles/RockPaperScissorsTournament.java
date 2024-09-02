@@ -1,7 +1,6 @@
 package Cap1._2_ProblemasAdHoc._4_Juegos_Dificiles;
 
-import java.util.Locale;
-import java.util.Scanner;
+import Utils.Kattio;
 
 
 /**

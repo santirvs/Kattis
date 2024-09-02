@@ -1,4 +1,4 @@
-package Cap1._2_ProblemasAdHoc._4_Juegos_Dificiles;
+package Utils;
 
 /** Simple yet moderately fast I/O routines.
  *

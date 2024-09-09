@@ -17,7 +17,7 @@ import java.util.Scanner;
 //            --> en el caso que realmente sea un valle (altura actual mayor que la anterior)
 //            --> Caso #6 y Caso #8: AC
 //Caso #13 WA --> Añado un estado: Buscando valle. Hasta que no se encuentre un valle, no puedo actualizar las alturas.
-//            --> Ahora me da WA en el caso#10
+//            --> Ahora me da WA en el caso#10. No encuentro el caso que da error. Se han probado los casos de BungeeBuilder_Casos.txt
 
 
 public class BungeeBuilder_WA {

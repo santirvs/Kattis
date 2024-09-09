@@ -3,81 +3,86 @@ package Cap2._1_EstructurasDatosConBibliotecas._11_Pila_Especiales;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Stack;
+import Utils.Kattio;
 
-//No veo donde usar la pila...
+// Bungee Builder
+// Adaptado de https://github.com/BrandonTang89/Competitive_Programming_4_Solutions/blob/main/Chapter_2_Data_Structures/Linear_DS_with_Built-in_Libraries/kattis_bungeebuilder.cpp
+//
+// Se trata de buscar la montaña más alta y a partir de ella, buscar la mayor distancia que se puede saltar
 
-//Recorrer los datos de las montañas
-//Implementar una máquina de estados
-// 1: Buscando Pico, hasta que no encuentre un valor inferior al anterior. Me guardo el anterior como punto máximo y el actual como punto mínimo
-// 2: Buscando Extremo, hasta que no encuentre un valor igual o superior al máximo. Voy actualizando el valor mínimo
-// 3: De nuevo buscando pico
 
-//Caso #8: WA --> Me he dejado de controlar el caso de que no haya encontrado un pico al final del recorrido.
-//            --> Implemento el caso de llegar al final del recorrido buscando extremo.
-//            --> Ahora me da WA en el caso#6:  Una secuencia estrictamente decreciente da error. Sólo se actualiza el valle
-//            --> en el caso que realmente sea un valle (altura actual mayor que la anterior)
-//            --> Caso #6 y Caso #8: AC
-//Caso #13 WA -->
+// Caso#38:TLE  --> Uso Kattis  -> AC
+
 public class BungeeBuilder {
 
-    static final int BUSCANDO_PICO = 1;
-    static final int BUSCANDO_EXTREMO = 2;
-
-
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        scan.useLocale(Locale.ENGLISH);
-
-        //Lectura de datos
-        int numMontes = scan.nextInt();
-        int estado = BUSCANDO_PICO;
-        int nivelValle = 0;
-        int alturaMaxima = 0;
-        int profundidadMaxima = 0;
-        int picoMaximo = 0;
-        int anterior = 0;
-
-        //Recorrer las montañas
-        for (int i=0; i<numMontes; i++) {
-            //Altura del nuevo monte
-            int altura = scan.nextInt();
-            if (estado == BUSCANDO_PICO) {
-                if (altura > alturaMaxima) {
-                    //Seguir buscando pico
-                    alturaMaxima = altura;
-                }
-                else {
-                    //Encontrado el pico, hay que buscar el otro extremo
-                    nivelValle = altura;
-                    picoMaximo = altura;
-                    estado = BUSCANDO_EXTREMO;
-                }
-            }
-            else if (estado == BUSCANDO_EXTREMO) {
-                if (altura >= alturaMaxima) {
-                    //He encontrado donde poner el extremo del puente
-                    //Calculo el nivel del valle más profundo y vuelvo a buscar un pico
-                    profundidadMaxima = Math.max(profundidadMaxima, alturaMaxima - nivelValle);
-                    alturaMaxima = altura;
-                    estado = BUSCANDO_PICO;
-                }
-                else {
-                    //Actualizo el nivel del valle y del pico máximo hasta el momento
-                    picoMaximo = Math.max(picoMaximo, altura);
-                    if (anterior < altura) {
-                        nivelValle = Math.min(nivelValle,anterior);
-                    }
-                }
-            }
-            anterior = altura;
+    static class Pair{
+        int first;
+        int second;
+        Pair(int f, int s){
+            first = f;
+            second = s;
         }
-        if (estado == BUSCANDO_EXTREMO) {
-            //He llegado al final y no he encontrado un pico
-            //Calculo el nivel del valle más profundo hasta ese momento
-            profundidadMaxima = Math.max(profundidadMaxima, picoMaximo - nivelValle);
-        }
-
-        //Mostrar el resultado
-        System.out.println(profundidadMaxima);
     }
+
+    static Stack<Pair> s = new Stack<>();
+    static int[] arr = new int[1000009];
+    static int n, max_h, max_h_pos;
+    static int max_jump=0;
+
+    public static void process_mountain(int m){ // process the mountain at pos m
+        //printf("m:%d\n", m);
+
+        int max_j_at_m = 0;
+        while (arr[m] >= s.peek().first){
+            max_j_at_m = Math.max(arr[m] - s.peek().first + s.peek().second,max_j_at_m);
+            //printf("Popping: %d %d\n", s.top().first, s.top().second);
+            s.pop();
+
+            if (s.empty())break;
+
+        }
+        s.push(new Pair(arr[m], max_j_at_m));
+        //printf("Pushing: %d %d\n", arr[m], max_j_at_m);
+
+        max_jump = Math.max(max_jump, max_j_at_m);
+    }
+
+    public static <Kattis> void main(String[] args) {
+        //Scanner scan = new Scanner(System.in);
+        //scan.useLocale(Locale.ENGLISH);
+
+        Kattio scan = new Kattio(System.in);
+
+        n = scan.getInt();
+        arr[0] = scan.getInt();
+        max_h = arr[0];
+        max_h_pos = 0;
+
+        for (int i = 1; i < n; i++) {
+            arr[i] = scan.getInt();
+            if (arr[i] > max_h) {
+                max_h_pos = i;
+                max_h = arr[i];
+            }
+        }
+
+        //printf("max height pos: %d, max height: %d\n", max_h_pos, max_h);
+        // Go from max height mountain towards the left
+        s.push(new Pair(max_h, 0));
+        for (int i = max_h_pos - 1; i >= 0; i--) {
+
+            process_mountain(i);
+        }
+        while (!s.empty()) s.pop();
+        s.push(new Pair(max_h, 0));
+        for (int i = max_h_pos + 1; i < n; i++) {
+            process_mountain(i);
+        }
+
+        System.out.println(max_jump);
+
+    }
+
+
+
 }

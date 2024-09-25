@@ -2,12 +2,13 @@ package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._1_ColaDePrioridad;
 
 // Usar una priotity queue para ir tomando los libros que nos vayan regalando (orden por tiempo)
 // Usar otra prority queue para ir cogiendo el libro a leer (orden por titulo)
+// Caso 19 -> RTE : No he comprobado que la cola de regalos esté vacía
+// Caso 19 -> WA : Tiempo debe ser long. Si en el instante 1.000.000.000 me regalan
+//               : 100.000 libros de 100.000 páginas = 10^10 --> LONG!!!
+//         -> AC! 1,51s
 import java.util.*;
 
-
-
-
-public class JaneEyre_RTE {
+public class JaneEyre {
     public static class Libro {
         String titulo;
         int numPaginas;
@@ -65,10 +66,10 @@ public class JaneEyre_RTE {
             regalos.add(l);
         }
 
-        int tiempo = 0;
+        long tiempo = 0;
         Libro lectura = null;
         while (lectura != libroJaneEyre) {
-            while (regalos.peek().instanteLlegada <= tiempo) {
+            while (!regalos.isEmpty() && regalos.peek().instanteLlegada <= tiempo) {
                 libros.add(regalos.poll());
             }
             lectura = libros.poll();

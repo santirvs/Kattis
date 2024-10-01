@@ -21,6 +21,5 @@ public class TimeTravellingTemperatures {
             System.out.println(X / (1 - Y));
         }
 
-
     }
 }

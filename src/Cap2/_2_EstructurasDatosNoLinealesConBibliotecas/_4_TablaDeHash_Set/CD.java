@@ -1,8 +1,7 @@
-package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._4_TablaDeHashSet;
+package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._4_TablaDeHash_Set;
 
 import java.io.*;
 import java.util.HashSet;
-import java.util.Scanner;
 
 // Usar un HashSet para verificar si ya contiene el CD
 

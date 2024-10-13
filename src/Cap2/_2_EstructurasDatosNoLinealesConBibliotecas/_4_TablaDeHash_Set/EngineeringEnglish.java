@@ -1,7 +1,6 @@
-package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._4_TablaDeHashSet;
+package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._4_TablaDeHash_Set;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Scanner;
 
 // Leer las palabras y, si ya se han leído, imprimir "." en lugar de la palabra

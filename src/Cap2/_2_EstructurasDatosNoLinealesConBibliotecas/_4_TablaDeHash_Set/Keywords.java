@@ -1,9 +1,7 @@
-package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._4_TablaDeHashSet;
+package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._4_TablaDeHash_Set;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
 
 // Convertir la frase a keyword en minúsculas y añadirlas al set

@@ -43,6 +43,7 @@ fun main() {
         //Inicializar caso
         val numOrdenes = scan.nextInt()
         scan.nextLine()
+
         val pqCompras = PriorityQueue<Orden>()
         val pqVentas = PriorityQueue<Orden>(OrdenCompatorByPrecioDesc)
         var precioUltimaTransaccion : Int? = null

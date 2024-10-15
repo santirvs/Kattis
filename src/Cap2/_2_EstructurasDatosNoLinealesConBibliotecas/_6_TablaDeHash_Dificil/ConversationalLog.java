@@ -5,7 +5,7 @@ import java.util.*;
 // Guardar un set de palabras para cada miembro de la conversación y otro para el conteo de palabras
 // Al final, recorrer los sets y hacer la intersección de todos los sets
 // Si el resultado es vacío, imprimir "ALL CLEAR"
-// Si el resultado no es vacío, imprimir las palabras ordenadas alfabéticamente
+// Si el resultado no es vacío, imprimir las palabras ordenadas por número de apariciones y, en caso de empate, alfabéticamente
 
 public class ConversationalLog {
 

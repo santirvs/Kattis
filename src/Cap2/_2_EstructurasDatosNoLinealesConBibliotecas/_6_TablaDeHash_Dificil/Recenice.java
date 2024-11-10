@@ -1,148 +1,106 @@
 package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._6_TablaDeHash_Dificil;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 // Leer las palabras
 // Contar los caracteres de toda la frase
 // Buscar, a partir de la longitud de la frase, la palabra que falta
 // Usar una tabla de hash para guardar la descripción de los números
 
-// Caso de prueba #11: WA --> ????
-// Adapto de https://github.com/mpfeifer1/Kattis/blob/master/recenice.cpp
+// Caso de prueba #11: WA --> Se empieza a contar desde 1, no desde longitudFrase -> OK
+//                            No se me ocurre un caso en el que el número a añadir sea inferior a longitudFrase...
 
 public class Recenice {
-
-    public static String digit(int i) {
-        switch (i) {
-            case 0:
-                return "";
-            case 1:
-                return "one";
-            case 2:
-                return "two";
-            case 3:
-                return "three";
-            case 4:
-                return "four";
-            case 5:
-                return "five";
-            case 6:
-                return "six";
-            case 7:
-                return "seven";
-            case 8:
-                return "eight";
-            case 9:
-                return "nine";
-        }
-        return "";
-    }
-
-    public static String tens(int i) {
-        switch(i) {
-            case 0:
-                return "";
-            case 1:
-                return "ten";
-            case 2:
-                return "twenty";
-            case 3:
-                return "thirty";
-            case 4:
-                return "forty";
-            case 5:
-                return "fifty";
-            case 6:
-                return "sixty";
-            case 7:
-                return "seventy";
-            case 8:
-                return "eighty";
-            case 9:
-                return "ninety";
-        }
-        return "";
-    }
-
-    public static String str(int i) {
-        if(i >= 100) {
-            return digit(i/100) + "hundred" + str(i%100);
-        }
-
-        if(i == 10) {
-            return "ten";
-        }
-        if(i == 11) {
-            return "eleven";
-        }
-        if(i == 12) {
-            return "twelve";
-        }
-        if(i == 13) {
-            return "thirteen";
-        }
-        if(i == 14) {
-            return "fourteen";
-        }
-        if(i == 15) {
-            return "fifteen";
-        }
-        if(i == 16) {
-            return "sixteen";
-        }
-        if(i == 17) {
-            return "seventeen";
-        }
-        if(i == 18) {
-            return "eighteen";
-        }
-        if(i == 19) {
-            return "nineteen";
-        }
-
-        String answer = "";
-        if(i >= 10) {
-            answer += tens(i / 10);
-            i %= 10;
-        }
-        if(i >= 0) {
-            answer += digit(i);
-        }
-
-        return answer;
-    }
 
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
 
-        int n = scan.nextInt();
+        HashMap<Integer, String> numeros = new HashMap<Integer, String>();
+        numeros.put(0, "");
+        numeros.put(1, "one");
+        numeros.put(2, "two");
+        numeros.put(3, "three");
+        numeros.put(4, "four");
+        numeros.put(5, "five");
+        numeros.put(6, "six");
+        numeros.put(7, "seven");
+        numeros.put(8, "eight");
+        numeros.put(9, "nine");
+        numeros.put(10, "ten");
+        numeros.put(11, "eleven");
+        numeros.put(12, "twelve");
+        numeros.put(13, "thirteen");
+        numeros.put(14, "fourteen");
+        numeros.put(15, "fifteen");
+        numeros.put(16, "sixteen");
+        numeros.put(17, "seventeen");
+        numeros.put(18, "eighteen");
+        numeros.put(19, "nineteen");
+        numeros.put(20, "twenty");
+        numeros.put(30, "thirty");
+        numeros.put(40, "forty");
+        numeros.put(50, "fifty");
+        numeros.put(60, "sixty");
+        numeros.put(70, "seventy");
+        numeros.put(80, "eighty");
+        numeros.put(90, "ninety");
+
+        //Leer las palabras
+        int numPalabras = scan.nextInt();
         scan.nextLine();
-
-        List sentence = new ArrayList();
-        int index = 0;
-        int characters = 0;
-        for(int i = 0; i < n; i++) {
-             String word = scan.nextLine();
-             if(word.equals("$")) {
-                    index = i;
-             } else {
-                    characters += word.length();
-                }
-             sentence.add(word);
-        }
-
-        for(int i = 1; i <= 1000; i++) {
-            if(str(i).length() + characters == i) {
-                sentence.set(index,str(i));
-                break;
+        String[] palabras = new String[numPalabras];
+        int longitudFrase = 0;
+        for (int i = 0; i < numPalabras; i++) {
+            palabras[i] = scan.nextLine();
+            if (! palabras[i].equals("$")) {
+                longitudFrase += palabras[i].length();
             }
         }
 
-        for(Object i : sentence) {
-            System.out.print(i + " ");
+        //Buscar la palabra que falta a partir de la longitud de la frase
+        boolean encontrado = false;
+        int num = 1;
+        String palabraFaltante = "";
+        while (! encontrado) {
+            String palabra = descripcionNumero(num, numeros);
+            if (palabra.length() + longitudFrase == num) {
+                encontrado = true;
+                palabraFaltante = palabra;
+            }
+            else {
+                num++;
+            }
+        }
+
+        //Mostrar la frase completa
+        for (int i = 0; i < numPalabras; i++) {
+            if (palabras[i].equals("$")) {
+                System.out.print(palabraFaltante);
+            } else {
+                System.out.print(palabras[i]);
+            }
+            if (i < numPalabras - 1) System.out.print(" ");
         }
         System.out.println();
+
+    }
+
+    private static String descripcionNumero(int num, HashMap<Integer, String> numeros) {
+        String resultado = "";
+
+        if (num >= 100) {
+            resultado += numeros.get(num / 100) + "hundred" + descripcionNumero(num % 100, numeros);
+        }
+        else if (num >= 20) {
+            resultado += numeros.get((num / 10) * 10) + numeros.get(num % 10);
+        }
+        else {
+            resultado += numeros.get(num);
+        }
+
+        return resultado;
     }
 
 }

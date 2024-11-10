@@ -24,9 +24,9 @@ public class RollCall {
         while (scan.hasNext()) {
 
             String[] linea = scan.nextLine().split(" ");
-//            if (linea.length == 1) {
-//                break;
-//            }
+            if (linea.length == 1) {
+                break;
+            }
             String nombre = linea[0];
             String apellido = linea[1];
 

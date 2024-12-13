@@ -1,11 +1,9 @@
 package Cap2._2_EstructurasDatosNoLinealesConBibliotecas._7_BST_Equilibrado_Set;
 
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
-// https://github.com/RussellDash332/kattis/blob/main/src/Introspective%20Caching/Caching.java
+// Adaptado de: https://github.com/RussellDash332/kattis/blob/main/src/Introspective%20Caching/Caching.java
 
 class Pair implements Comparable<Pair>{
     int first;
@@ -27,91 +25,67 @@ class Pair implements Comparable<Pair>{
 }
 
 public class IntrospectiveCaching {
-    static class Reader {
-        final private int BUFFER_SIZE = 1 << 16;
-        private DataInputStream din;
-        private byte[] buffer;
-        private int bufferPointer, bytesRead;
-
-        public Reader() {
-            din = new DataInputStream(System.in);
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
-        }
-
-        public int nextInt() throws IOException {
-            int ret = 0;
-            byte c = read();
-            while (c <= ' ') {
-                c = read();
-            }
-            boolean neg = (c == '-');
-            if (neg)
-                c = read();
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (neg)
-                return -ret;
-            return ret;
-        }
-
-        private void fillBuffer() throws IOException {
-            bytesRead = din.read(buffer, bufferPointer = 0,
-                    BUFFER_SIZE);
-            if (bytesRead == -1)
-                buffer[0] = -1;
-        }
-
-        private byte read() throws IOException {
-            if (bufferPointer == bytesRead)
-                fillBuffer();
-            return buffer[bufferPointer++];
-        }
-    }
 
     public static void main(String[] args) throws IOException {
-        Reader sc = new Reader();
-        PrintWriter writer = new PrintWriter(System.out);
+        Scanner scan = new Scanner(System.in);
 
-        int c = sc.nextInt();
-        int n = sc.nextInt();
-        int a = sc.nextInt();
+        int capacidadCache = scan.nextInt();
+        int numObjetos = scan.nextInt();
+        int numAccesos = scan.nextInt();
 
-        PriorityQueue<Pair> pq = new PriorityQueue<Pair>();
-        boolean[] active = new boolean[n];
-        List<Queue<Pair>> lqp = new ArrayList<Queue<Pair>>();
-        for (int i = 0; i < n; i++) {
-            lqp.add(new LinkedList<Pair>());
+        //Cola de prioridad para saber qué objeto sacar de la caché
+        //El que más tarde en ser accedido
+        PriorityQueue<Pair> colaPrioridad = new PriorityQueue<>();
+
+        //Array para saber cada uno de los objetos está activo o no
+        boolean[] active = new boolean[numObjetos];
+
+        //Inicializar la lista de colas para cada uno de los objetos del sistema
+        List<Queue<Pair>> listaColas = new ArrayList<>();
+        for (int i = 0; i < numObjetos; i++) {
+            listaColas.add(new LinkedList<>());
         }
 
-        int[] acc = new int[a];
-        for (int i = 0; i < a; i++) {
-            acc[i] = sc.nextInt();
-            lqp.get(acc[i]).add(new Pair(i, acc[i]));
+        //Leer cada uno de los accesos y añadirlos al sistema
+        int[] accesos = new int[numAccesos];
+        for (int i = 0; i < numAccesos; i++) {
+            //Leer el elemento al que se accede
+            int objeto = scan.nextInt();
+            accesos[i] = objeto;
+            //Añadir el acceso a la cola de cada elemento
+            //Se añade un par con el número de acceso y el número de objeto
+            listaColas.get(objeto).add(new Pair(i, objeto));
         }
 
-        int ans = 0;
-        int numUsed = 0;
-        for (int i = 0; i < a; i++) {
-            if (!active[acc[i]]) {
-                active[acc[i]] = true;
-                ans++;
-                if (numUsed < c) {
-                    numUsed++;
+        //Resolver el problema
+        int respuesta = 0;
+        int numUsados = 0;
+        //Recorrer cada uno de los accesos que hemos cargado previamente en el array accesos
+        for (int i = 0; i < numAccesos; i++) {
+            //Si el objeto no está activo, se activa (activo == en la caché)
+            int objetoActual = accesos[i];
+            if (!active[objetoActual]) {
+                active[objetoActual] = true;
+                //Se carga el objeto en la caché
+                respuesta++;
+                if (numUsados < capacidadCache) {
+                    numUsados++;
                 } else {
-                    Pair evict = pq.poll();
+                    //Sacar un objeto de la caché, según indique la cola de prioridad
+                    Pair evict = colaPrioridad.poll();
+                    //Marco el objeto como inactivo (sacado de la caché)
                     active[evict.second] = false;
                 }
             }
-            lqp.get(acc[i]).poll();
-            Pair next = lqp.get(acc[i]).peek();
+            //Eliminar el acceso de la cola de accesos del objeto actual
+            listaColas.get(objetoActual).poll();
+            //Mira cuál es el siguiente acceso a ese objeto y, si existe, lo añade a la cola de prioridad
+            Pair next = listaColas.get(objetoActual).peek();
             if (next == null)
-                next = new Pair(a, acc[i]);
-            pq.add(next);
+               next = new Pair(numAccesos, objetoActual);  //Si no hay más accesos, se añade uno con un número muy grande  (prioriddad mínima
+            colaPrioridad.add(next);
         }
 
-        writer.println(ans);
-        writer.flush();
+        System.out.println(respuesta);
     }
 }

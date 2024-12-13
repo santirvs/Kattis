@@ -19,7 +19,7 @@ public class ConversationalLog {
 
         //Añadir las palabras a los sets de cada miembro
         while (numConversaciones > 0) {
-            String[] conversacion = scan.nextLine().split(" ");
+            String[] conversacion = scan.nextLine().toLowerCase().split(" ");
             String miembro = conversacion[0];
             if (!palabras.containsKey(miembro)) {
                 palabras.put(miembro, new HashSet<String>());

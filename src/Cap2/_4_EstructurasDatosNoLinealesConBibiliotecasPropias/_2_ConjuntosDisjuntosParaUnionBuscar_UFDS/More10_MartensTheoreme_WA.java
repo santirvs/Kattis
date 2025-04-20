@@ -11,7 +11,7 @@ import java.util.*;
 
 // v1.0 - TLE en caso #11 usar FastReader
 // v2.0 - Cambio TLE por WA !!!  Envío el código en Python y funciona correctamente
-// Falta por revisar internamente el código (transformado a Java desde ChatGPT
+// Falta por revisar internamente el código (transformado a Java desde ChatGPT)
 
 
 public class More10_MartensTheoreme_WA {
@@ -172,6 +172,7 @@ public class More10_MartensTheoreme_WA {
         }
 
         //TrieNode para almacenar los sufijos de las palabras
+        // https://www.geeksforgeeks.org/trie-insert-and-search/
         static class TrieNode {
             Map<Character, TrieNode> hijos = new HashMap<>();
             Integer index = null;

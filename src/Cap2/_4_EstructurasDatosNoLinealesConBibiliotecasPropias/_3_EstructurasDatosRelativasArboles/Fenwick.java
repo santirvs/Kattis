@@ -171,6 +171,8 @@ class FenwickTree {
 }
 
 public class Fenwick {
+
+
     public static void main(String[] args) throws IOException {
         //Scanner sc = new Scanner(System.in);
         Reader sc = new Reader();

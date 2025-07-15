@@ -152,7 +152,7 @@ class FenwickTree {
     }
 
     //Actualización de los nodos del árbol
-    public void update(int i, int value) {
+    public void add(int i, int value) {
         while (i <= size) {
             sums[i] += value;
             i += i & -i;
@@ -191,7 +191,7 @@ public class Fenwick {
             if (query[0].equals("+")) {
                 int i = Integer.parseInt(query[1]);
                 int v = Integer.parseInt(query[2]);
-                tree.update(i + 1, v);
+                tree.add(i + 1, v);
             } else {
                 //Muestra la suma hasta el elemento i
                 int i = Integer.parseInt(query[1]);

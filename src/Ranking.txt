@@ -1,3 +1,4 @@
+19/JUL/2025 - 1032.5 - #692
 17/JUL/2025 - 1023.1 - #697 -- Final Cap2._4_EstructurasDatosNoLinealesConBibliotecas -- TOP 9 SPAIN - TOP 1 UPC - TOP 2 CATALUNYA
 16/JUL/2025 - 1016.2 - #703 -- Retomar después de casi 2 meses
 
@@ -19,7 +20,7 @@
 31/ENE/2025 - 962.8 - #724 -- Retomar después de 23 días
 08/ENE/2025 - 966.0 - #714
 06/ENE/2025 - 955.9 - #727 -- Retomar después de 10 días
-28/DIC/2024 - 959.1 - #721 -- Final Cap2._2_EstructurasDatosNoLinealesConBibliotecas -- TOP 9 SPAIN - TOP 1 UPC - TOP 2 CATALUNYA
+28/DIC/2024 - 959.1 - #721 -- Final Cap2._3_EstructurasDatosNoLinealesConBibliotecas -- TOP 9 SPAIN - TOP 1 UPC - TOP 2 CATALUNYA
 27/DIC/2024 - 939.7 - #747
 26/DIC/2024 - 929.9 - #753
 25/DIC/2024 - 911.7 - #775
@@ -54,7 +55,7 @@
 18/SEP/2024 - 719,3 - #1024
 17/SEP/2024 - 712,6 - #1038
 15/SEP/2024 - 707,0 - #1048
-15/SEP/2024 - 704,6 - #1055 -- Final Cap2._1_EstructurasDatosConBibliotecas  -- TOP 10 SPAIN - TOP 1 UPC - TOP 2 CATALUNYA
+15/SEP/2024 - 704,6 - #1055 -- Final Cap2._2_EstructurasDatosConBibliotecas  -- TOP 10 SPAIN - TOP 1 UPC - TOP 2 CATALUNYA
 13/SEP/2024 - 694,8 - #1075
 11/SEP/2024 - 692,6 - #1075
 10/SEP/2024 - 683,5 - #1097

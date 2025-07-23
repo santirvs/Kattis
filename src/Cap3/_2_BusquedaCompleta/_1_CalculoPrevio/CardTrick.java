@@ -1,4 +1,4 @@
-package Cap3._2_BusquedaCompleta.CalculoPrevio;
+package Cap3._2_BusquedaCompleta._1_CalculoPrevio;
 
 // Dado que sólo hay 13 casos posibles, se calculan previamente y luego se responden a las consultas
 // Para calcularlo previamente, se puede partir de la solución final para cada caso y calcularla hacia atrás

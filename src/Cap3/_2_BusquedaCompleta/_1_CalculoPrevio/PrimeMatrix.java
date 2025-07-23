@@ -1,4 +1,4 @@
-package Cap3._2_BusquedaCompleta.CalculoPrevio;
+package Cap3._2_BusquedaCompleta._1_CalculoPrevio;
 import java.util.*;
 
 // El enunciado nos pide construir una matriz de números enteros de tamaño tamanyMatriu x tamanyMatriu

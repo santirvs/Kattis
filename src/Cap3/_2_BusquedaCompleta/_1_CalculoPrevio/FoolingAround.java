@@ -1,4 +1,4 @@
-package Cap3._2_BusquedaCompleta.CalculoPrevio;
+package Cap3._2_BusquedaCompleta._1_CalculoPrevio;
 
 //El problema aquí es que se tarda mucho tiempo en calcular los números ganadores de A y B
 // y no se puede hacer en tiempo real, por lo que se calcula previamente y luego se responde a las consultas

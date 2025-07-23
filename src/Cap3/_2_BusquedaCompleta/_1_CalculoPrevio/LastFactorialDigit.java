@@ -1,4 +1,4 @@
-package Cap3._2_BusquedaCompleta.CalculoPrevio;
+package Cap3._2_BusquedaCompleta._1_CalculoPrevio;
 
 import java.util.Scanner;
 

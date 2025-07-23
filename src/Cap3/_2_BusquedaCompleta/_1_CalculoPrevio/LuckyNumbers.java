@@ -1,7 +1,6 @@
-package Cap3._2_BusquedaCompleta.CalculoPrevio;
+package Cap3._2_BusquedaCompleta._1_CalculoPrevio;
 
 import java.math.BigInteger;
-import java.sql.Array;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;

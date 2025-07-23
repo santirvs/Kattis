@@ -1,4 +1,4 @@
-package Cap3._2_BusquedaCompleta.CalculoPrevio;
+package Cap3._2_BusquedaCompleta._1_CalculoPrevio;
 import java.util.*;
 
 // El enunciado aquí indica que el token tiene 7 ceros al final y es menor de 1_000_000_000.

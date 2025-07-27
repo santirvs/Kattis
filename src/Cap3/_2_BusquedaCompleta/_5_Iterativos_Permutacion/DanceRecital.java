@@ -2,6 +2,11 @@ package Cap3._2_BusquedaCompleta._5_Iterativos_Permutacion;
 
 import java.util.*;
 
+// Calcular todas las permutaciones
+// Como está limitado a 10 rutinas, se puede usar un enfoque de búsqueda completa 10! -> 3628800 estamos al límite
+// Si no funciona, se puede usar DP con bitmask para optimizar el proceso O(n * 2^n) donde n es el número de rutinas
+// que para n = 10 es 1024, por lo que el tiempo de ejecución es aceptable
+
 // v1 -> TLE en Caso #5--> abortar si se encuentra una permutación con 0 repeticiones --> continua el TLE
 // v2 : Cambiar planteamiento y usar DP con bitmask para evitar TLE
 

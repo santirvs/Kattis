@@ -1,6 +1,6 @@
 package Cap3._2_BusquedaCompleta._5_Iterativos_Permutacion;
 
-import java.util.Arrays;
+import java.util.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -8,69 +8,101 @@ import java.util.Scanner;
 // Aquí deberíamos usar un enfoque de todas las permutaciones, limitado a 10 personas.
 // Usaremos DP con bitmask para optimizar el proceso O(n * 2^n) donde n es el número de personas
 // Para cada persona, calcular si se puede poner adyacente a la anterior
+// Pero aquí nos piden el orden de las personas y eso el DP con bitmask no lo hace directamente.
+
+// Por lo tanto, usaremos un enfoque de búsqueda completa iterativa para generar todas las permutaciones
+// y comprobar si se pueden poner adyacentes, ya que el número de personas es pequeño (máximo 10).
+// No genera todas las permutaciones, sino que las va generando en orden lexicográfico
+
 
 public class ClassPicture {
-
-    static int numPersonas;
-    static HashMap<String, Integer> nombres;
-    static boolean[][] incompatibles; // Incompatibilidades entre las personas de la clase
-    static int[][] dp;  // Array para programación dinámica
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         while (sc.hasNext()) {
-            //Leer número de personas
-            numPersonas = sc.nextInt();
-            //Leer las personas
+            // Leer número de personas
+            int numPersonas = sc.nextInt();
+            String[] nombres = new String[numPersonas];
             for (int i = 0; i < numPersonas; i++) {
-                String nombre = sc.next();
-                nombres.put(nombre, i); // Guardar el nombre de la persona
+                nombres[i] = sc.next();
             }
 
-            //Leer las incompatibilidades entre miembros de la clase, inicializado a false
-            incompatibles = new boolean[numPersonas][numPersonas];
+            // Ordenar lexicográficamente
+            Arrays.sort(nombres);
+
+            // Mapear nombre a índice ya que buscaremos la primera solución en orden lexicográfico
+            Map<String, Integer> nombresToIndice = new HashMap<>();
+            for (int i = 0; i < numPersonas; i++) {
+                nombresToIndice.put(nombres[i], i);
+            }
+
+            // Leer relaciones de incompatibilidad
             int numIncompatibilidades = sc.nextInt();
+            boolean[][] incompatibles = new boolean[numPersonas][numPersonas];
             for (int i = 0; i < numIncompatibilidades; i++) {
-                String persona1 = sc.next();
-                String persona2 = sc.next();
-                // Son mútuamente incompatibles
-                incompatibles[nombres.get(persona1)][nombres.get(persona2)] = true;
-                incompatibles[nombres.get(persona2)][nombres.get(persona1)] = true;
+                //Leer los nombres
+                String n1 = sc.next();
+                String n2 = sc.next();
+                //Recuperar los índices de los nombres
+                int u = nombresToIndice.get(n1);
+                int v = nombresToIndice.get(n2);
+                // Marcar como mutuamente incompatibles
+                incompatibles[u][v] = true;
+                incompatibles[v][u] = true;
             }
 
-            >>>> VOY POR AQUÍ!!!
+            // Generar permutaciones
+            int[] perm = new int[numPersonas];
+            for (int i = 0; i < numPersonas; i++) perm[i] = i;
 
-
-            // Inicializar DP
-            int size = 1 << numPersonas;
-            dp = new int[size][numPersonas];
-            for (int[] row : dp) Arrays.fill(row, Integer.MAX_VALUE);
-
-            // Inicializar DP: solo una rutina en uso
-            for (int i = 0; i < numPersonas; i++)
-                dp[1 << i][i] = 0;
-
-            // Llenar tabla DP
-            for (int mask = 0; mask < size; mask++) {
-                for (int last = 0; last < numPersonas; last++) {
-                    if ((mask & (1 << last)) == 0 || dp[mask][last] == Integer.MAX_VALUE) continue;
-                    for (int next = 0; next < numPersonas; next++) {
-                        if ((mask & (1 << next)) != 0) continue;
-                        int nextMask = mask | (1 << next);
-                        int change = incompatibles[last][next];
-                        dp[nextMask][next] = Math.min(dp[nextMask][next], dp[mask][last] + change);
+            boolean ok = false;
+            do {
+                //Suponemos que la permutación es válida
+                ok = true;
+                //Recorrer todas las personas en la permutación
+                for (int i = 0; i < numPersonas - 1; i++) {
+                    //Comprobar que son compatibles con la siguiente
+                    if (incompatibles[perm[i]][perm[i + 1]]) {
+                        //Si no son compatibles, marcamos como no válida
+                        ok = false;
+                        break;  // Sale del for
                     }
                 }
+                if (ok) break;  // Sale del do-while si encontramos una permutación válida
+            } while (nextPermutation(perm));
+
+            if (ok) {
+                // Si encontramos una permutación válida, imprimirla
+                for (int i = 0; i < numPersonas; i++) {
+                    System.out.print(nombres[perm[i]] + " ");
+                }
+                System.out.println();
+            } else {
+                // Si no encontramos ninguna permutación válida, imprimir el mensaje correspondiente
+                System.out.println("You all need therapy.");
             }
-
-            // Encontrar el mínimo de cambios rápidos al final de todas las rutinas
-            int minQuickChanges = Integer.MAX_VALUE;
-            for (int i = 0; i < numPersonas; i++)
-                minQuickChanges = Math.min(minQuickChanges, dp[size - 1][i]);
-
-            // Mostrar el mínimo de cambios rápidos
-            System.out.println(minQuickChanges);
         }
+
+        sc.close();
+    }
+
+    // next_permutation para array de enteros
+    public static boolean nextPermutation(int[] a) {
+        int i = a.length - 2;
+        while (i >= 0 && a[i] >= a[i + 1]) i--;
+        if (i < 0) return false;
+
+        int j = a.length - 1;
+        while (a[j] <= a[i]) j--;
+
+        // Swap
+        int temp = a[i]; a[i] = a[j]; a[j] = temp;
+
+        // Reverse suffix
+        for (int l = i + 1, r = a.length - 1; l < r; l++, r--) {
+            temp = a[l]; a[l] = a[r]; a[r] = temp;
+        }
+        return true;
     }
 }

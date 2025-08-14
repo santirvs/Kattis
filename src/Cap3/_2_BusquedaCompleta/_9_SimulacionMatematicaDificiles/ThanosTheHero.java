@@ -6,7 +6,7 @@ package Cap3._2_BusquedaCompleta._9_SimulacionMatematicaDificiles;
 // Si alguna población pasa a ser negativa, se considerará imposible y se imprimirá "1"
 
 // v1. WA en Caso#11
-// v2. cambio de planteamiento
+// v2. cambio de planteamiento -> AC
 
 
 

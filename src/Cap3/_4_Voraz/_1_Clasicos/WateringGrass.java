@@ -12,7 +12,7 @@ package Cap3._4_Voraz._1_Clasicos;
 // La salida es el número mínimo de aspersores necesarios para cubrir el intervalo [0, M] o -1 si no es posible cubrir el intervalo.
 
 
-// CORREGIR!!!  El caso #3 no funciona!  Revisar las condiciones del while interno y el if de la cobertura actual.
+// CORREGIR!!!  El caso #3 no funciona!  Revisar las condiciones del while interno y el if de la cobertura actual...
 
 import java.io.IOException;
 import java.io.InputStream;

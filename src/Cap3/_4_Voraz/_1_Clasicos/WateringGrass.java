@@ -12,34 +12,39 @@ package Cap3._4_Voraz._1_Clasicos;
 // La salida es el número mínimo de aspersores necesarios para cubrir el intervalo [0, M] o -1 si no es posible cubrir el intervalo.
 
 
-// CORREGIR!!!  El caso #3 no funciona!  Revisar las condiciones del while interno y el if de la cobertura actual...
+// v1. TLE en Caso #1 !!!  No funciona bien el FastScanner con el final del fichero...
+// Sí que funciona bien, pero en el catch hay que forzar la salida del bucle principal
+
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class WateringGrass {
 
     public static void main(String[] args) throws IOException {
         // 10.000 entradas, mejor usar un FastScanner
-        FastScanner sc = new FastScanner();
+        Scanner sc = new Scanner(System.in);
 
-        while (true) {
+        while (sc.hasNext()) {
             try {
                 // Lectura de los datos
                 int numAspersores = sc.nextInt();
                 int longitudCesped = sc.nextInt();
-                int anchoCesped = sc.nextInt();
+                double anchoCesped = sc.nextInt();
 
                 int numUsados = 0;
                 boolean posible = true;
 
+                //Lectura de los aspersores. Inicio del rango y fin del rango de los aspersores
                 ArrayList<double[]> aspersores = new ArrayList<>();
                 for (int i = 0; i < numAspersores; i++) {
                     int x = sc.nextInt();
-                    int r = sc.nextInt();
-                    if (r * r >= (anchoCesped / 2) * (anchoCesped / 2)) {
+                    double r = sc.nextInt();
+                    // Descartar los aspersores que no pueden cubrir el césped en su altura
+                    if (r * r >= (anchoCesped / 2.0) * (anchoCesped / 2.0)) {
                         double alcanceHorizontal = Math.sqrt(r * r - (anchoCesped / 2) * (anchoCesped / 2));
                         double inicio = Math.max(0, x - alcanceHorizontal);
                         double fin = Math.min(longitudCesped, x + alcanceHorizontal);
@@ -54,14 +59,17 @@ public class WateringGrass {
 
                 while (coberturaActual < longitudCesped) {
                     double mejorCobertura = coberturaActual;
+                    // Buscar el aspersor que su rango empiece antes de la cobertura actual y que su rango termine lo más lejos posible
                     while (idx < aspersores.size() && aspersores.get(idx)[0] <= coberturaActual) {
                         mejorCobertura = Math.max(mejorCobertura, aspersores.get(idx)[1]);
                         idx++;
                     }
+                    // Si no mejora la cobertura actual significa que no es posible cubrir el césped
                     if (mejorCobertura == coberturaActual) {
                         posible = false;
                         break;
                     }
+                    //Actualizar la cobertura actual e incrementar el número de aspersores usados
                     coberturaActual = mejorCobertura;
                     numUsados++;
                 }
@@ -73,6 +81,7 @@ public class WateringGrass {
 
             } catch (Exception e) {
                 // Fin de la entrada
+                break;
             }
 
         }

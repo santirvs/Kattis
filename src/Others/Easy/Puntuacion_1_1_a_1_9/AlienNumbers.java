@@ -1,4 +1,4 @@
-package Others;
+package Others.Easy.Puntuacion_1_1_a_1_9;
 
 import java.util.Scanner;
 

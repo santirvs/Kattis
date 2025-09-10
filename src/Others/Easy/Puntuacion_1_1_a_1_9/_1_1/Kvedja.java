@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Leer el nombre y añadir el saludo en una línea anterior
 

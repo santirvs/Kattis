@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_2;
 
 // Leer el nombre y la cantidad de ingredientes
 // Si sólo hay 1 ingrediente, imprimirlo. Si hay más de 1, imprimir "blandad best"

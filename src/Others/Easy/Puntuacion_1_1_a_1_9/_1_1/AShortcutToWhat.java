@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Leer el número y aplicar las operaciones indicadas en el enunciado (x+5)*3-10
 

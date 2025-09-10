@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Restar los dos números e imprimir el resultado
 

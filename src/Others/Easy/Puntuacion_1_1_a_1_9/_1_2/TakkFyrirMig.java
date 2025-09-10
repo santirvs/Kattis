@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_2;
 
 // Leer el número de personas.
 // Luego leer cada una de las personas e imprimir "Takk " + nombre de la persona.

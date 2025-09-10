@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Leer el número de mejoras total de mejoras, leer el número anual de mejoras
 // Dividir y sumar a 2022

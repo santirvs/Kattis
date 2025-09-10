@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_2;
 
 // Leer el nombre y la cantidad de veces que se debe imprimir "Hipp, Hipp, hurra"
 // Imprimir "Hipp hipp hurra " y el nombre la cantidad de veces indicada

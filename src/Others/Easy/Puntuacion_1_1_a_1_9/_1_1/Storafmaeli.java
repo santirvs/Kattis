@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Detectar si el número és múltiplo de 10 e imprimir "Neibb" si no lo es o "Jebb" si sí que lo es
 

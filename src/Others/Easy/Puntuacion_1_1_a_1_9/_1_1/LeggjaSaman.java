@@ -1,17 +1,17 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
-// Leer dos números y mostrar el módulo de a % b
+// Leer dos números y mostrar su suma
 
 import java.util.Scanner;
 
-public class Flatbokuveisla {
+public class LeggjaSaman {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
 
         int a = scan.nextInt();
         int b = scan.nextInt();
-        System.out.println(a % b);
+        System.out.println(a + b);
 
     }
 }

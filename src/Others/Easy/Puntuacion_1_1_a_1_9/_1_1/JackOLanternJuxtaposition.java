@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Leer tres números y multiplicar a*b*c
 // El número máximo puede ser 500*500*500 = 125.000.000 que cabe en un int

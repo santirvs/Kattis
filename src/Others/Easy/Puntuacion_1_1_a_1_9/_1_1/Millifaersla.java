@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_1;
 
 // Leer el precio de los tres sistemas (Monnei, Fjee, y Dolladollabilljoll) y escoger el de menor precio
 

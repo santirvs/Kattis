@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9;
+package Others.Easy.Puntuacion_1_1_a_1_9._1_2;
 
 // Calcular el número de soluciones de una ecuación de segundo grado
 

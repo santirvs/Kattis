@@ -12,13 +12,13 @@ public class KingArthurRoundTable {
 
         Scanner sc = new Scanner(System.in).useLocale(Locale.UK);
 
-        //Leer el diametro
+        //Leer los datos
         double diametro = sc.nextDouble();
         double ancho = sc.nextDouble();
         int numCaballeros = sc.nextInt();
 
         double perimetroNecesario = ancho * numCaballeros;
-        double perimetroMesa = diametro * 3.14159;
+        double perimetroMesa = diametro * Math.PI;
 
         if (perimetroNecesario <= perimetroMesa) {
             System.out.println("YES");

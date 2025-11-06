@@ -13,7 +13,7 @@ public class Railroad {
         Scanner sc = new Scanner(System.in);
 
         // Leer el número de cruces y desvíos
-        int cruces = sc.nextInt();
+        sc.nextInt();  // el número de cruces no importa
         int desvios = sc.nextInt();
         // Si el número de desvíos es par mostrar "possible", si es impar mostrar "impossible"
         if (desvios % 2 == 0) {

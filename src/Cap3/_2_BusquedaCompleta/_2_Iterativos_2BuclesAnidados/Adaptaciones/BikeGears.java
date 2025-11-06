@@ -1,4 +1,4 @@
-package Cap3._2_BusquedaCompleta._2_Iterativos_2BuclesAnidados;
+package Cap3._2_BusquedaCompleta._2_Iterativos_2BuclesAnidados.Adaptaciones;
 
 // Hacer todas las combinaciones de platos y piñones
 // Calcular la relación plato/piñón
@@ -31,6 +31,10 @@ public class BikeGears {
             return this.plato*o.pinyon != o.plato*this.pinyon ? Long.compare(this.plato*o.pinyon, o.plato*this.pinyon) : Long.compare(this.plato, o.plato);
         }
 
+        //@Override
+        public int compareTo_(Relacion o) {
+            return this.plato/this.pinyon > o.plato / o.pinyon ? 1 : -1;
+        }
     }
 
 

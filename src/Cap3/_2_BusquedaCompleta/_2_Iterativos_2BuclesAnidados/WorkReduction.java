@@ -17,6 +17,8 @@ package Cap3._2_BusquedaCompleta._2_Iterativos_2BuclesAnidados;
 // v1. TLE en Caso de pruebas #3
 // v2 --> Traduccion a C++  --> AC
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class WorkReduction {
@@ -45,8 +47,50 @@ public class WorkReduction {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    // Scanner rápido
+    static class FastScanner {
+        private final byte[] buffer = new byte[1 << 16];
+        private int ptr = 0, len = 0;
+        private final InputStream in = System.in;
+
+        private int readByte() throws IOException {
+            if (ptr >= len) {
+                len = in.read(buffer);
+                ptr = 0;
+                if (len <= 0) return -1;
+            }
+            return buffer[ptr++];
+        }
+
+        String next() throws IOException {
+            StringBuilder sb = new StringBuilder();
+            int c;
+            while ((c = readByte()) != -1 && c <= ' ');
+            if (c == -1) return null;
+            do {
+                sb.append((char)c);
+            } while ((c = readByte()) != -1 && c > ' ');
+            return sb.toString();
+        }
+
+        String nextLine() throws IOException {
+            StringBuilder sb = new StringBuilder();
+            int c;
+            while ((c = readByte()) != -1 && c <= '\n');
+            if (c == -1) return null;
+            do {
+                sb.append((char)c);
+            } while ((c = readByte()) != -1 && c > '\n');
+            return sb.toString();
+        }
+
+        int nextInt() throws IOException {
+            return Integer.parseInt(next());
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        FastScanner scan = new FastScanner();
 
         int numCasos = scan.nextInt(); // Número de casos
 
@@ -94,7 +138,6 @@ public class WorkReduction {
                 System.out.printf("%s %d\n", agencia.nombre, agencia.costeTotal); // Imprimir el nombre de la agencia y el coste total
             }
         }
-
 
     }
 }

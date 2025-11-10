@@ -1,7 +1,5 @@
 package Cap3._4_Voraz._1_Clasicos.Adaptaciones;
 
-// Estrategia Voraz. Clásicos.
-
 // Estrategia voraz.
 // Problema de cobertura de intervalos.
 // Dado un conjunto de intervalos, encontrar el subconjunto mínimo de intervalos que cubra un intervalo [0, M].
@@ -11,25 +9,37 @@ package Cap3._4_Voraz._1_Clasicos.Adaptaciones;
 // La salida es el número mínimo de intervalos necesarios para cubrir el intervalo [0, M] y los intervalos usados
 // o impossible si no es posible cubrir el intervalo.
 
-// v1 -> TLE en caso #2 -> Usar FastScanner
-// v2 -> Aceptada.
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
-public class IntervalCover {
+public class PorALaFoscor {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        // 20.000 entradas, mejor usar un FastScanner
+        FastScanner sc = new FastScanner();
 
-        while (true) {
+        boolean primerCaso = true;
+        while (true) {  // El FastScanner no tiene hasNext(), necesito el while(true) + try/catch
             try {
                 // Lectura del rango a cubrir
                 double rangoMin = sc.nextDouble();
                 double rangoMax = sc.nextDouble();
+
+                // Línea separadora de casos (excepto la primera)
+                if (!primerCaso) {
+                    System.out.println();
+                } else {
+                    primerCaso = false;
+                }
+                // Asegurar que rangoMin <= rangoMax
+                if (rangoMin > rangoMax) {
+                    double aux = rangoMin;
+                    rangoMin = rangoMax;
+                    rangoMax = aux;
+                }
 
                 // Lectura del numero de intervalos
                 int numIntervalos = sc.nextInt();
@@ -45,17 +55,14 @@ public class IntervalCover {
                 // Ordenar los intervalos por el inicio del intervalo
                 Collections.sort(intervalos, (a, b) -> Double.compare(a[0], b[0]));
 
-                // Descartar los intervalos que no pueden cubrir el rango
-                ArrayList<Integer> rangosUsados = new ArrayList<>();
-                int numUsados = 0;
-                boolean posible = true;
-
                 // Algoritmo voraz
                 double inicio = Double.NEGATIVE_INFINITY;
                 double coberturaActual = Double.NEGATIVE_INFINITY;
                 ArrayList<Integer> indicesUsados = new ArrayList<>();
                 int idx = 0;
                 int indiceUsado = -1;
+                int numUsados = 0;
+                boolean posible = true;
                 // Buscar el primer rango que empiece lo más cerca del rangoMin y que termine lo más lejos posible
                 while (idx < intervalos.size() && intervalos.get(idx)[0] <= rangoMin) {
                     if (inicio < intervalos.get(idx)[0] && intervalos.get(idx)[1] >= coberturaActual) {
@@ -65,7 +72,7 @@ public class IntervalCover {
                     }
                     idx++;
                 }
-                // Si no se ha usado ningun intervalo significa que no es posible cubrir el césped
+                // Si no se ha usado ningún intervalo significa que no es posible cubrir el inicio de la carretera
                 if (indiceUsado == -1) {
                     posible = false;
                 } else {
@@ -76,7 +83,7 @@ public class IntervalCover {
                 // Buscar el resto de intervalos
                 while (coberturaActual < rangoMax) {
                     double mejorCobertura = coberturaActual;
-                    // Buscar el aspersor que su rango empiece antes de la cobertura actual y que su rango termine lo más lejos posible
+                    // Buscar la farola que su rango empiece antes o igual de la cobertura actual y que su rango termine lo más lejos posible
                     while (idx < intervalos.size() && intervalos.get(idx)[0] <= coberturaActual) {
                         if (intervalos.get(idx)[1] > mejorCobertura) {
                             indiceUsado = (int) intervalos.get(idx)[2];
@@ -97,6 +104,7 @@ public class IntervalCover {
 
                 //Mostrar el resultado
                 if (posible) {
+                    Collections.sort(indicesUsados);
                     System.out.println(numUsados);
                     boolean primero = true;
                     for (Integer i : indicesUsados) {
@@ -106,7 +114,7 @@ public class IntervalCover {
                     }
                     System.out.println();
                 } else {
-                    System.out.println("impossible");
+                    System.out.println("PayStayXon all the night!");
                 }
             } catch (Exception e) {
                 // Fin de la entrada
@@ -116,4 +124,38 @@ public class IntervalCover {
 
     }
 
+    // Scanner rápido
+    static class FastScanner {
+        private final byte[] buffer = new byte[1 << 16];
+        private int ptr = 0, len = 0;
+        private final InputStream in = System.in;
+
+        private int readByte() throws IOException {
+            if (ptr >= len) {
+                len = in.read(buffer);
+                ptr = 0;
+                if (len <= 0) return -1;
+            }
+            return buffer[ptr++];
+        }
+
+        String next() throws IOException {
+            StringBuilder sb = new StringBuilder();
+            int c;
+            while ((c = readByte()) != -1 && c <= ' ');
+            if (c == -1) return null;
+            do {
+                sb.append((char)c);
+            } while ((c = readByte()) != -1 && c > ' ');
+            return sb.toString();
+        }
+
+        int nextInt() throws IOException {
+            return Integer.parseInt(next());
+        }
+
+        double nextDouble() throws IOException {
+            return Double.parseDouble(next());
+        }
+    }
 }

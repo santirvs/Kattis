@@ -19,12 +19,16 @@ public class BizzFuzz {
         long C = scan.nextLong();
         long D = scan.nextLong();
 
-        // gcd usando BigInteger
+        //Optimización usando BigInteger
+        // Cuanto más grande es el número más tarda en hacer las operaciones
+        // así que en lugar de hacer mcm(C,D) = C*D
+        // mcm(C,D) = C / gcd*D
+        // Primero busca el gcd usando BigInteger
         BigInteger bigC = BigInteger.valueOf(C);
         BigInteger bigD = BigInteger.valueOf(D);
         BigInteger g = bigC.gcd(bigD);
 
-        // lcm = C / gcd * D
+        // Y ahora busca el lcm = C / gcd * D
         BigInteger lcm = bigC.divide(g).multiply(bigD);
 
         BigInteger bigA = BigInteger.valueOf(A);

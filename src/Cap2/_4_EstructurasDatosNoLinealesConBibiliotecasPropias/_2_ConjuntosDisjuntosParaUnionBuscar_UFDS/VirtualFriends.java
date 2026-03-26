@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 
-// Apliación directa de un UFDS para gestionar los grupos
+// Aplicación directa de un UFDS para gestionar los grupos
 // Traducción de los nombres a integer mediante un hashmap
 
 public class VirtualFriends {

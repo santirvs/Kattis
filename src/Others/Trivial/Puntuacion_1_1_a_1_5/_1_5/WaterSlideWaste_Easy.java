@@ -1,16 +1,17 @@
-package Cap2._4_EstructurasDatosNoLinealesConBibiliotecasPropias._3_EstructurasDatosRelativasArboles;
+package Others.Trivial.Puntuacion_1_1_a_1_5._1_5;
+
+// Parece simple: sumar todos los elementos del array
+// TLE! con solución lineal --> Poner Fast Input
+
+//
+
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Scanner;
-
-import java.util.*;
-
-//  v1.  TLE  --> Faig servir el reader
 
 
-public class MovieCollection {
+public class WaterSlideWaste_Easy {
 
     static class Reader {
         final private int BUFFER_SIZE = 1 << 20;
@@ -135,98 +136,22 @@ public class MovieCollection {
         }
     }
 
-    // Estructura BIT (Fenwick Tree) emmagatzemada com a ArrayList
-    static ArrayList<Integer> st = new ArrayList<>();
-
-    // Calcula el "Least Significant Bit" d'un número
-    static int LSB(int i) {
-        return i & -i;
-    }
-
-    // Suma prefixada fins a la posició i (inclusiva)
-    static int sum(int i) {
-        int res = 0;
-        while (i > 0) {
-            res += st.get(i);
-            i -= LSB(i); // Ens movem cap enrere pel BIT
-        }
-        return res;
-    }
-
-    // Afegeix valor v a la posició i del BIT
-    static void add(int i, int v) {
-        while (i < st.size()) {
-            st.set(i, st.get(i) + v); // Suma v a la posició actual
-            i += LSB(i);              // Ens movem cap endavant pel BIT
-        }
-    }
-
     public static void main(String[] args) throws IOException {
-        //Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in).useLocale(Locale.UK);
         Reader sc = new Reader();
-        int numCasos = sc.nextInt(); // Nombre de casos de prova
+
+        // Leer el número de casos
+        int numCasos = sc.nextInt();
+        int totalLitros = 0;
 
         while (numCasos-- > 0) {
-            int numElements = sc.nextInt(); // Nombre d'elements inicials a la pila
-            int numConsultes = sc.nextInt(); // Nombre de consultes (accions de moure al front)
-
-            // Inicialitzem el BIT amb m + r + 1 posicions (més un extra per seguretat)
-            st = new ArrayList<>(Collections.nCopies(numElements + numConsultes + 2, 0));
-            int[] T = new int[numElements]; // Array per guardar les posicions actuals dels elements
-
-            // Inicialitzem el BIT amb els m elements
-            for (int i = 0; i < numElements; ++i) {
-                T[i] = i + numConsultes + 1; // Assignem a cada element una posició al final
-                add(T[i], 1);     // L’afegim al BIT
-            }
-
-            // Processem les r consultes
-            for (int i = 0; i < numConsultes; ++i) {
-
-                //Mostrar l'estat a l'entrada del bucle
-                imprimirArray(T);
-
-
-                int k = sc.nextInt() - 1; // Llegim l’element a moure (0-based)
-
-                //Mostra l'element a agafar
-                System.out.println("Agafo element: " + (k+1));
-
-                // Mostrem quants elements hi ha davant seu (sumatori fins a la seva posició - 1)
-                System.out.print((sum(T[k]) - 1) + " ");
-
-                // L’eliminem de la seva posició actual
-                add(T[k], -1);
-
-                // El movem al front, a una nova posició que decreix amb cada pas
-                T[k] = numConsultes - i;
-
-                // L’afegim a la nova posició
-                add(T[k], 1);
-            }
-
-            // Salt de línia després de cada cas de prova
-            System.out.println();
+            int litros = sc.nextInt();
+            totalLitros +=litros;
         }
+
+        System.out.println(totalLitros);
 
         sc.close();
     }
-
-    private static void imprimirArray(int[] t) {
-        System.out.print("T: [");
-        for (int i=0; i<t.length;i++) {
-            System.out.print(" " + t[i]);
-        }
-        System.out.println("]");
-        imprimirBIT();
-    }
-
-
-    private static void imprimirBIT() {
-        System.out.print("BIT: [");
-        for (int i=0; i<st.size(); i++) {
-            System.out.print(" " + st.get(i));
-        }
-        System.out.println("]");
-    }
 }
+

@@ -3,51 +3,43 @@ package Others.Easy.Puntuacion_2_0_a_2_9._2_3;
 
 /*
     Atención al factorial de un número muy grande!
-    El error debe ser menor de 10^-12, por lo que podemos dejar de calcular
+    El error debe ser menor de 10^-12, por lo que podemos dejar de calcular el inverso del factorial
+    cuando éste alcance por ejemplo 10^15
 
 
  */
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.Scanner;
 
 public class EulersNumber {
 
+    public static long factorial(int i) {
+        if (i==0 || i==1) return 1;
+        else return (i * factorial(i-1));
+    }
 
-    public static void main(String[] args) throws IOException {
-        FR_Int fr = new FR_Int();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        int numCasos = fr.nextInt();
+        boolean noMoreFactorial = false;
 
-        while (numCasos-- > 0) {
-
-            int id = fr.nextInt();
-            int numero = fr.nextInt();
-            //Datos de la secuencia prohibida (SP)
-            int inicioSP = fr.nextInt();
-            int incrementoSP = fr.nextInt();
-
-            int[] dp = new int[numero+1];
-            dp[0] = 1;
-
-            for (int i=1; i<=numero; i++) {
-                for (int j=1; j<=i; j++) {
-                    if (j<=numero && ((j<inicioSP) || (j-inicioSP)%incrementoSP !=0) ) {
-                        dp[i] += dp[i-j];
-                    }
-                }
+        int num = sc.nextInt();
+        double resultado = 0;
+        for (int i=0; i<=num && !noMoreFactorial; i++) {
+            long f = factorial(i);
+            double inverso = 1.0/f;
+            if (inverso < 0.0000000000000001) {
+                noMoreFactorial = true;
             }
+            else {
+                resultado += inverso;
+            }
+        }
 
-//            for (int i=0; i<=numero; i++) {
-//                System.out.print(i+":"+dp[i]+" ");
-//            }
-//            System.out.println();
+        System.out.println(resultado);
 
-            System.out.println(id + " " + dp[numero]);
+
 
         }
     }
 
-
-
-}

@@ -12,13 +12,37 @@ public class SliderPuzzle {
         Scanner sc = new Scanner(System.in);
 
         int numCasos = sc.nextInt();
+        sc.nextLine();
 
-        while (numCasos-- > 0) {
+        for(int caso=1; caso <=numCasos; caso++) {
 
+            String[] nums = sc.nextLine().split(" ");
 
+            boolean[] visitados = new boolean[nums.length];
+            LinkedList<Integer> lista = new LinkedList<>();
+            int pos = 0;
+            lista.addLast(0);
+            boolean encontrado = false;
+            while (!lista.isEmpty()) {
+                pos = lista.pollFirst();
+                visitados[pos]=true;
+                int valor = Integer.parseInt(nums[pos]);
+                if (valor == 0)  {
+                    encontrado = true;
+                }
 
+                if (pos-valor >= 0 && !visitados[pos-valor] ) {
+                    lista.add(pos-valor);
+                }
+                if (pos+valor <nums.length && !visitados[pos+valor] ) {
+                    lista.add(pos+valor);
+                }
 
-        }
+            }
+
+            if (encontrado) System.out.println("Puzzle " + caso + " is solvable.");
+            else System.out.println("Puzzle " + caso + " is not solvable.");
+          }
 
 
         sc.close();

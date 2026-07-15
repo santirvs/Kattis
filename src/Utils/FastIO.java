@@ -154,7 +154,7 @@ public class FastIO {
                 res = res * 10 + (c - '0');
                 c = read();
             }
-            return res;
+            return negativo ? -res : res;
         }
     }
 

@@ -1,4 +1,4 @@
-package Others.Easy.Puntuacion_1_1_a_1_9._1_3;
+package Others.Trivial.Puntuacion_1_1_a_1_5._1_3;
 
 /**
  * Contar 1s y 0s en el
@@ -7,7 +7,6 @@ package Others.Easy.Puntuacion_1_1_a_1_9._1_3;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.Stack;
 
 
 public class JustABit {
